@@ -15,7 +15,12 @@ exports.config = {
     },
 
   specs:
-  ['spec.js'],
+  [
+    'spec.js',
+    'spec_actions.js',
+    'spec_JS_exec.js',
+
+  ],
 
 
   jasmineNodeOpts: {
