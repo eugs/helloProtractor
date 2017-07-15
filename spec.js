@@ -3,28 +3,17 @@ describe('homepage', function() {
   var resource = 'https://genius.com/';
   var EC = protractor.ExpectedConditions;
 
-
-  // var search_form = element(by.xpath('/html/body/div[1]/search-form/form/input'));
   var search_form = element(by.model('search_text'));
-
-  // var song_first = element(by.xpath('//*[@id="main"]/div/ul/li[1]/a'));
-var song_first = element(by.css('.song_link'));
-var mini_window_link = $('search-result-section div[ng-switch]');
-var twitter_icon = $('svg.inline_icon[src="twitter.svg"');
-var song_text = $('div .lyrics');
-
-  // var song_text = element(by.xpath('/html/body/routable-page/ng-outlet/song-page/div/div/div[2]/div[1]/div/defer-compile[1]/lyrics/div/section/p'));
-
-  // $('.feed_dropdown-header.feed_dropdown-header--bottom_border');
-
-  // $('a.mini_card[ng-href="https://genius.com/artists/Ed-sheeran"]');
-
-// .feed_dropdown-header.feed_dropdown-header--bottom_border
+  var song_first = element(by.css('.song_link'));
+  var song_text = $('div .lyrics');
+  var twitter_icon = $('svg.inline_icon[src="twitter.svg"');
+  var mini_window_link = $('search-result-section div[ng-switch]');
 
   beforeEach(function () {
     console.log('\n...');
     browser.get(resource);
   });
+
 
   it('should have a proper title', function() {
     expect(browser.getTitle()).toContain('Genius | Song Lyrics & Knowledge');
@@ -47,6 +36,7 @@ var song_text = $('div .lyrics');
       });
 
   });
+
 
   it('should open a new twitter tab', function () {
 
