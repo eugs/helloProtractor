@@ -3,31 +3,25 @@ describe('homepage', function() {
   var resource = 'https://genius.com/';
   var EC = protractor.ExpectedConditions;
 
-  var mini_window_link = $('a.mini_card[ng-href="https://genius.com/artists/Ed-sheeran"]');
+  var mini_window_link = $('search-result-section div[ng-switch]');
 
+  // $('.feed_dropdown-header.feed_dropdown-header--bottom_border');
+
+  // $('a.mini_card[ng-href="https://genius.com/artists/Ed-sheeran"]');
+
+// .feed_dropdown-header.feed_dropdown-header--bottom_border
 
   beforeEach(function () {
     console.log('\n...');
+    browser.get(resource);
   });
 
   it('should have a proper title', function() {
-    browser.get(resource);
     expect(browser.getTitle()).toContain('Genius | Song Lyrics & Knowledge');
   });
 
-  // xit('should search', function () {
-  //   // browser.get(resource);
-  //
-  //   element(by.xpath('//*[@id="search-ip"]')).sendKeys('Kesha');
-  //   element(by.css('body')).sendKeys(protractor.Key.ENTER)
-  //   // element(by.css('#search-container form input.search-btn')).click();
-  //   browser.driver.sleep(3000);
-  //
-  //     expect(browser.getTitle()).toContain('Song Lyrics | MetroLyrics');
-  // });
-
   it('should search', function () {
-    browser.get(resource);
+    // browser.get(resource);
 
     // search
     element(by.xpath('/html/body/div[1]/search-form/form/input')).sendKeys('p!nk')
@@ -58,7 +52,7 @@ describe('homepage', function() {
   });
 
   it('should open a new twitter tab', function () {
-    browser.get(resource);
+    // browser.get(resource);
 
     element(by.css('svg.inline_icon[src="twitter.svg"')).click()
       .then(function () {
@@ -91,10 +85,11 @@ describe('homepage', function() {
     // browser.window.close();
   });
 
+
+// regular search
   it('should show artist link as first result in mini-window when search', function () {
 
-
-    browser.get(resource);
+    // browser.get(resource);
     element(by.xpath('/html/body/div[1]/search-form/form/input')).sendKeys('ed sheeran').click();
 
     browser.wait(EC.visibilityOf(mini_window_link));
@@ -106,27 +101,30 @@ describe('homepage', function() {
 
   });
 
-  // it('should navigate with button when artist search', function () {
-  //
-  //   // var mini_window = $('a.mini_card[ng-href="https://genius.com/artists/Ed-sheeran"]');
-  //
-  //   browser.get(resource);
-  //   var search_field = element(by.xpath('/html/body/div[1]/search-form/form/input'));
-  //
-  //   driver.actions().mouseMove(search_field).mouseDown().mouseUp().perform();
-  //
-  //   search_field.sendKeys("p!nk");
-  //
-  //   browser.wait(EC.visibilityOf(mini_window));
-  //   // mini_window.click();
-  //
-  // driver.actions().sendKeys(Key.TAB).sendKeys(Key.ENTER).perform();
-  //
-  //   expect(browser.getCurrentUrl()).toEqual('https://genius.com/artists/P-nk');
-  //
-  //   browser.sleep(4000);
-  //
-  // });
+  // search via actions
+  it('should navigate with button when artist search', function () {
+
+    var search_field = element(by.xpath('/html/body/div[1]/search-form/form/input'));
+
+    browser.actions().mouseMove(search_field).mouseDown().mouseUp().perform();
+
+    // because I can
+    browser.actions().keyDown(protractor.Key.SHIFT).sendKeys('p')
+      .keyUp(protractor.Key.SHIFT).sendKeys('!nk').perform();
+
+    browser.wait(EC.presenceOf(mini_window_link));
+
+    // browser.sleep(2000);
+    browser.actions().sendKeys(protractor.Key.TAB).perform();
+
+    browser.actions().sendKeys(protractor.Key.ENTER).perform()
+      .then (function () {
+        // browser.sleep(1000);
+        expect(browser.getCurrentUrl()).toEqual('https://genius.com/artists/P-nk');
+
+      })
+
+  });
 
 
 
