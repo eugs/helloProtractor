@@ -45,7 +45,6 @@ describe('homepage', function() {
 
         browser.getAllWindowHandles()
           .then(function (handles) {
-
             //check if opens in new tab
             expect(handles.length > 1);
 
@@ -65,8 +64,7 @@ describe('homepage', function() {
       });
   });
 
-
-// regular search
+  // regular search
   it('should show artist link as first result in mini-window when search', function () {
 
     search_form.sendKeys('ed sheeran').click();

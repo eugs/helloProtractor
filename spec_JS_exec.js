@@ -5,8 +5,7 @@ describe('test with JS executor', function() {
     browser.get('https://genius.com/#community');
 
     var className = 'chart_row-number_container chart_row-number_container--large';
-
-    // scroll to the first artists
+    // scroll to the first 10 artists
     script('document.getElementsByClassName("'+ className + '")[0].scrollIntoView();')
 
     script('return document.getElementsByClassName("'+ className + '")')
@@ -38,7 +37,6 @@ describe('test with JS executor', function() {
         script("arguments[0].style.backgroundColor = '" + previousColor + "'", element)
         browser.sleep(200);
       });
-
   }
 
   function script(code, element) {

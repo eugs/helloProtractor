@@ -7,7 +7,11 @@ exports.config = {
     },
     // {
     //   'browserName' : 'firefox'
+    // },
+    // {
+    //   'browserName' : 'internet explorer'
     // }
+
   ],
 
   onPrepare: function () {
@@ -19,6 +23,7 @@ exports.config = {
     'spec.js',
     'spec_actions.js',
     'spec_JS_exec.js',
+    'spec_nonAng.js'
 
   ],
 
